@@ -8,6 +8,7 @@
   <!-- General CSS Files -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
 
   <!-- CSS Libraries -->
 
@@ -19,23 +20,11 @@
 <body>
   <div id="app">
     <div class="main-wrapper">
-      <div class="navbar-bg"></div>
-        <nav class="navbar navbar-expand-lg main-navbar">
-            @include('layout.navbar')
-        </nav>
-      <div class="main-sidebar sidebar-style-2">
-        @include('layout.sidebar')
-      </div>
-
-      <!-- Main Content -->
-      <div class="main-content">
-        @yield('content')
-
-      </div>
-      <footer class="main-footer">
-        @include('layout.footer')
-      </footer>
-    </div>
+      <section class="section">
+        <div class="container mt-5">
+            @yield('content')
+        </div>
+      </section>
   </div>
 
   <!-- General JS Scripts -->
