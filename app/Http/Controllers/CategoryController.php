@@ -27,7 +27,7 @@ class CategoryController extends Controller
             ->when($request->input('nama_category'), function ($query, $nama_category) {
                 return $query->where('nama_category', 'like', '%' . $nama_category . '%');
             })
-            ->paginate(5);
+            ->paginate(10);
         return view('data.category.index', compact('categorys'));
     }
 
@@ -66,18 +66,21 @@ class CategoryController extends Controller
     public function destroy(category $category, $id)
     {
         $category = Category::findorfail($id);
-        try {
-            $category->delete();
-            return redirect()->route('category')->with('success', 'Hapus Data category Sukses');
-        } catch (\Illuminate\Database\QueryException $e) {
-            $error_code = $e->errorInfo[1];
-            if ($error_code == 1451) {
-                return redirect()->route('category')
-                    ->with('error', 'Tidak Dapat Menghapus category Yang Masih Digunakan Oleh Kolom Lain');
-            } else {
-                return redirect()->route('category')->with('success', 'Hapus Data category Sukses');
-            }
-        }
+        $category->delete();
+        return back()->with('info','Data Berhasil di Hapus!');
+
+        // try {
+        //     $category->delete();
+        //     return redirect()->route('category')->with('success', 'Hapus Data category Sukses');
+        // } catch (\Illuminate\Database\QueryException $e) {
+        //     $error_code = $e->errorInfo[1];
+        //     if ($error_code == 1451) {
+        //         return redirect()->route('category')
+        //             ->with('error', 'Tidak Dapat Menghapus category Yang Masih Digunakan Oleh Kolom Lain');
+        //     } else {
+        //         return redirect()->route('category')->with('success', 'Hapus Data category Sukses');
+        //     }
+        // }
     }
 
 

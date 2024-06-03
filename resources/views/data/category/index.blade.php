@@ -75,18 +75,11 @@
                                                         class="btn btn-sm btn-info btn-icon "
                                                         data-id="edt-{{ $category->id }}"><i class="fas fa-edit"></i>
                                                         Edit</a>
-                                                    <form action="{{ route('category.destroy', $category->id) }}"
-                                                        method="delete" class="ml-2" id="del-<?= $category->id ?>">
-                                                        <input type="hidden" name="_method" value="DELETE">
-                                                        <input type="hidden" name="_token"
-                                                            value="{{ csrf_token() }}">
-                                                        <button type="submit" class="btn btn-sm btn-danger btn-icon"
-                                                            data-confirm="Hapus Data Category?|Apakah Kamu Yakin?"
-                                                            data-confirm-yes="submitDel(<?= $category->id ?>)"
-                                                            data-id="del-{{ $category->id }}" >
+                                                    <a href="{{ route('category.destroy', $category->id) }}" data-id="delete-{{ $category->id }}">
+                                                        <button type="submit" class="btn btn-sm btn-danger btn-icon">
                                                             <i class="fas fa-times"></i> Delete
                                                         </button>
-                                                    </form>
+                                                    </a>
                                                 </div>
                                             </td>
                                         </tr>

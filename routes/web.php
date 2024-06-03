@@ -34,7 +34,7 @@ Route::get('category.create', 'App\Http\Controllers\CategoryController@create')-
 Route::post('category.simpan', 'App\Http\Controllers\CategoryController@store')->name('category.simpan');
 Route::get('category.edit/{id}', 'App\Http\Controllers\CategoryController@edit')->name('category.edit');
 Route::put('category.update/{id}', 'App\Http\Controllers\CategoryController@update')->name('category.update');
-Route::delete('category.destroy/{id}', 'App\Http\Controllers\CategoryController@destroy')->name('category.destroy');
+Route::get('category.destroy/{id}', 'App\Http\Controllers\CategoryController@destroy')->name('category.destroy');
 // Route::get('category', [App\Http\Controllers\CategoryController::class, 'category'])->name('data.category.index');
 // Route::get('category', function () {
 //     return view('data.product.index');
