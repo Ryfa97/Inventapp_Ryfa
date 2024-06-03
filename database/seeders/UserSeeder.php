@@ -17,9 +17,26 @@ class UserSeeder extends Seeder
         User::factory(10)->create();
         // Membuat data dummy sebanyak 10 user
         User::create([
-            'name' => 'Admin',
+            'name' => 'Ryfa',
             'email' => 'ryfa@gmail.com',
             'email_verified_at' => now(),
+            'role' => 'Admin',
+            'password' => Hash::make('password')
+        ]);
+        // membuat sebuah user bernama admin
+        User::create([
+            'name' => 'Taufik',
+            'email' => 'taufik@gmail.com',
+            'email_verified_at' => now(),
+            'role' => 'Teknisi',
+            'password' => Hash::make('password')
+        ]);
+        // membuat sebuah user bernama teknisi
+        User::create([
+            'name' => 'Salwa',
+            'email' => 'salwa@gmail.com',
+            'email_verified_at' => now(),
+            'role' => 'Kepala',
             'password' => Hash::make('password')
         ]);
         // membuat sebuah user bernama admin
