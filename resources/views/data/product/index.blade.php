@@ -26,7 +26,7 @@
                     <div class="card-header">
                         <h4>List Products</h4>
                         <div class="card-header-action">
-                            <a class="btn btn-icon icon-left btn-primary" href="#"
+                            <a class="btn btn-icon icon-left btn-primary" href="{{ route('product.create') }}"
                                 data-id="tambah-perusahaan">Tambah Data
                                 Products</a>
                             <a class="btn btn-info btn-primary active" href="#"
@@ -39,95 +39,67 @@
                         </div>
                     </div>
                     <div class="card-body">
-                        <div class="show-import" style="display: none">
-                            {{-- @error('import-file')
-                                <div class="invalid-feedback d-flex mb-10" role="alert">
-                                    <div class="alert_alert-dange_mt-1_mb-1">
-                                        {{ $message }}
-                                    </div>
-                                </div>
-                            @enderror --}}
-                            <div class="custom-file">
-                                <form action="#" method="post"
-                                    enctype="multipart/form-data">
-                                    @csrf
-                                    @method('POST')
-                                    <label class="custom-file-label" for="file-upload">Choose File</label>
-                                    <input type="file" id="file-upload" class="custom-file-input" name="import-file"
-                                        data-id="send-import">
-                                    <br /> <br />
-                                    <div class="footer text-right">
-                                        <button class="btn btn-primary" data-id="submit-import">Import File</button>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
                         <div class="show-search mb-3" style="display: none">
-                            {{-- @error('nama_perusahaan')
-                                <div class="invalid-feedback d-flex mb-10" role="alert">
-                                    <div class="alert_alert-dange_mt-1_mb-1">
-                                        {{ $message }}
+                            <form id="search" method="GET" action="{{ route('product') }}">
+                                <div class="form-col">
+                                    <div class="form-row">
+                                        <div class="form-group col-md-7">
+                                            <label for="role">Category</label>
+                                            <input type="text" name="nama_category" class="form-control"
+                                                id="nama_category" placeholder="Nama Category"
+                                                data-id="search-category">
+                                        </div>
                                     </div>
-                                </div>
-                            @enderror --}}
-                            <form id="search" method="GET" action="">
-                                <div class="form-row">
-                                    <div class="form-group col-md-4">
-                                        <label for="role">Perusahaan</label>
-                                        <input type="text" name="nama_perusahaan" class="form-control"
-                                            id="nama_perusahaan" placeholder="Nama Perusahaan"
-                                            data-id="search-perusahaan">
+                                    <div class="form-row">
+                                        <div class="form-group col-md-7">
+                                            <label for="role">Product</label>
+                                            <input type="text" name="nama_product" class="form-control"
+                                                id="nama_product" placeholder="Nama Product"
+                                                data-id="search-product">
+                                        </div>
                                     </div>
+
                                 </div>
                                 <div class="text-right">
                                     <button class="btn btn-primary mr-1 button" type="submit"
                                         data-id="submit-search">Submit</button>
-                                    <a class="btn btn-secondary" href="" data-id="reset">Reset</a>
+                                    <a class="btn btn-secondary" href="{{ route('product') }}"
+                                        data-id="reset">Reset</a>
                                 </div>
                             </form>
                         </div>
-                        {{-- <div class="table-responsive">
+                        <div class="table-responsive">
                             <table class="table table-bordered table-md">
                                 <tbody>
                                     <tr>
                                         <th>#</th>
-                                        <th>Nama Perusahaan</th>
-                                        <th>NIB</th>
-                                        <th>Status Pemodalan</th>
-                                        <th>Uraian Jenis Perusahaan</th>
-                                        <th>Kabupaten</th>
-                                        <th>Alamat</th>
-                                        <th>Email</th>
-                                        <th>Nomer Telpon</th>
+                                        <th>Nama Category</th>
+                                        <th>Nama Product</th>
                                         <th class="text-right">Action</th>
                                     </tr>
-                                    @foreach ($perusahaans as $key => $perusahaan)
+                                    @foreach ($products as $key => $product)
                                         <tr>
-                                            <td>{{ ($perusahaans->currentPage() - 1) * $perusahaans->perPage() + $key + 1 }}
+                                            <td>{{ ($products->currentPage() - 1) * $products->perPage() + $key + 1 }}
                                             </td>
-                                            <td>{{ $perusahaan->nama_perusahaan }}</td>
-                                            <td>{{ $perusahaan->nib }}</td>
-                                            <td>{{ $perusahaan->status_pmdn }}</td>
-                                            <td>{{ $perusahaan->nama_uraian_jenis_perusahaan }}</td>
-                                            <td>{{ $perusahaan->nama_kabupaten }}</td>
-                                            <td>{{ $perusahaan->alamat }}</td>
-                                            <td>{{ $perusahaan->email }}</td>
-                                            <td>{{ $perusahaan->no_telp }}</td>
+                                            <td>{{ $product->nama_category }}
+                                            </td>
+                                            <td>{{ $product->nama_product }}</td>
                                             <td class="text-right">
                                                 <div class="d-flex justify-content-end">
-                                                    <a href="{{ route('perusahaan.edit', $perusahaan->id) }}"
+                                                    <a href="{{ route('product.edit', $product->id) }}"
                                                         class="btn btn-sm btn-info btn-icon "
-                                                        data-id="edt-{{ $perusahaan->id }}"><i class="fas fa-edit"></i>
+                                                        data-id="edt-{{ $product->id }}"><i class="fas fa-edit"></i>
                                                         Edit</a>
-                                                    <form action="{{ route('perusahaan.destroy', $perusahaan->id) }}"
-                                                        method="POST" class="ml-2" id="del-<?= $perusahaan->id ?>">
+                                                    <form action="{{ route('product.destroy', $product->id) }}"
+                                                        method="POST" class="ml-2" id="del-<?= $product->id ?>">
                                                         <input type="hidden" name="_method" value="DELETE">
                                                         <input type="hidden" name="_token"
                                                             value="{{ csrf_token() }}">
-                                                        <button type="submit" class="btn btn-sm btn-danger btn-icon "
-                                                            data-confirm="Hapus Data Perusahaan?|Apakah Kamu Yakin?"
-                                                            data-confirm-yes="submitDel(<?= $perusahaan->id ?>)"
-                                                            data-id="del-{{ $perusahaan->id }}">
+                                                        <button type="submit" class="btn btn-sm btn-danger btn-icon"
+                                                            data-confirm="Hapus Data Product?|Apakah Kamu Yakin?"
+                                                            data-confirm-yes="submitDel(<?= $product->id ?>)"
+                                                            data-id="del-{{ $product->id }}"
+                                                            onclick="return false;">
                                                             <i class="fas fa-times"></i> Delete
                                                         </button>
                                                     </form>
@@ -138,10 +110,9 @@
                                 </tbody>
                             </table>
                             <div class="d-flex justify-content-center">
-                                {{ $perusahaans->withQueryString()->links() }}
-
+                                {{ $products->withQueryString()->links() }}
                             </div>
-                        </div> --}}
+                        </div>
                     </div>
                 </div>
             </div>
@@ -149,3 +120,30 @@
     </div>
 </section>
 @endsection
+@push('customScript')
+<script>
+    $(document).ready(function() {
+        $('.import').click(function(event) {
+            event.stopPropagation();
+            $(".show-import").slideToggle("fast");
+            $(".show-search").hide();
+        });
+        $('.search').click(function(event) {
+            event.stopPropagation();
+            $(".show-search").slideToggle("fast");
+            $(".show-import").hide();
+        });
+        $('#file-upload').change(function() {
+            var i = $(this).prev('label').clone();
+            var file = $('#file-upload')[0].files[0].name;
+            $(this).prev('label').text(file);
+        });
+    });
+
+    function submitDel(id) {
+        $('#del-' + id).submit()
+    }
+</script>
+@endpush
+@push('customStyle')
+@endpush

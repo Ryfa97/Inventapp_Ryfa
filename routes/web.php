@@ -25,29 +25,25 @@ Route::middleware(['auth'])->group(function(){
     // ->middleware('can:dashboard');
 });
 
-
-// Route::resource('category', App\Http\Controllers\CategoryController::class);
-// });
-
 Route::get('category', 'App\Http\Controllers\CategoryController@index')->name('category');
 Route::get('category.create', 'App\Http\Controllers\CategoryController@create')->name('category.create');
 Route::post('category.simpan', 'App\Http\Controllers\CategoryController@store')->name('category.simpan');
 Route::get('category.edit/{id}', 'App\Http\Controllers\CategoryController@edit')->name('category.edit');
 Route::put('category.update/{id}', 'App\Http\Controllers\CategoryController@update')->name('category.update');
 Route::get('category.destroy/{id}', 'App\Http\Controllers\CategoryController@destroy')->name('category.destroy');
-// Route::get('category', [App\Http\Controllers\CategoryController::class, 'category'])->name('data.category.index');
-// Route::get('category', function () {
+
+
+Route::get('product', 'App\Http\Controllers\ProductController@index')->name('product');
+Route::get('product.create', 'App\Http\Controllers\ProductController@create')->name('product.create');
+Route::post('product.simpan', 'App\Http\Controllers\ProductController@store')->name('product.simpan');
+Route::get('product.edit/{id}', 'App\Http\Controllers\ProductController@edit')->name('product.edit');
+Route::put('product.update/{id}', 'App\Http\Controllers\ProductController@update')->name('product.update');
+Route::get('product.destroy/{id}', 'App\Http\Controllers\ProductController@destroy')->name('product.destroy');
+
+
+// Route::get('/product', function () {
 //     return view('data.product.index');
 // })->name('product');
-
-
-// Route::get('/category', function () {
-//     return view('data.category.index');
-// })->name('category');
-
-Route::get('/product', function () {
-    return view('data.product.index');
-})->name('product');
 
 Route::get('/masuk', function () {
     return view('kelola-barang.barang-masuk.index');
